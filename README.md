@@ -1,5 +1,5 @@
 
-# Workflow Runner
+# ThunderHawk
 
 ThunderHawk is a command-line tool designed for load testing APIs. It utilizes an Actix Web server to provide HTTP endpoints for triggering workflow processes, fetching task results, and managing load test data. This tool is highly configurable, supporting both file-based and command-line configurations for flexible deployment and testing.
 

@@ -51,7 +51,7 @@ Launch the server with `cargo run`, specifying configuration options as needed. 
 ```yaml
 name: "User Onboarding Workflow"
 apis:
-  - name: "Setup Organization"
+  - name: "Setup Department"
     url: https://jsonplaceholder.typicode.com/todos/1
     method: GET
     expected_field: id

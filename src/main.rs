@@ -83,10 +83,19 @@ async fn main() -> std::io::Result<()> {
             .app_data(app_state_for_actix.clone())
             .app_data(settings_for_actix.clone())
             .app_data(workflows_for_actix.clone())
-            .route("/load_test_results", web::get().to(get_load_test_data))
-            .route("/trigger_workflow", web::get().to(trigger_monitoring))
-            .route("/task_results", web::get().to(get_task_data))
-            .route("/trigger_workflow", web::post().to(trigger_monitoring_via_webhook))
+            .service(
+                web::scope("/api/v1")
+                    .service(
+                        web::scope("/workflow")
+                            .route("/trigger", web::get().to(trigger_monitoring))
+                            .route("/trigger", web::post().to(trigger_monitoring_via_webhook))
+                    )
+                    .service(
+                        web::scope("/result")
+                            .route("/load-test", web::get().to(get_load_test_data))
+                            .route("/task", web::get().to(get_task_data))
+                    )
+            )
     })
     .bind("127.0.0.1:8080")?
     .run()
